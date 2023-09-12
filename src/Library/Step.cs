@@ -18,9 +18,10 @@ namespace Full_GRASP_And_SOLID.Library
             this.Equipment = equipment;
         }
 
-        public double GetStepCost(Recipe recipe)
+        public double GetStepCost()
         {
-            return (this.Input.UnitCost * this.Quantity);
+            return (this.Input.UnitCost * this.Quantity +
+                    this.Equipment.HourlyCost * this.Time/60);
         }
 
         public double GetStepTime(Recipe recipe)

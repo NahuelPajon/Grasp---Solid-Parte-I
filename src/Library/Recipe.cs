@@ -25,6 +25,22 @@ namespace Full_GRASP_And_SOLID.Library
             this.steps.Remove(step);
         }
 
+        public double GetProductionCost()
+        {
+            // Costo insumos = Sumatoria de costo unitario de los insumos,
+
+            // Costo equipamiento = Sumatoria de tiempo de uso x costo/hora del equipo para todos los pasos de la receta,
+
+            // Costo total = costo insumos + costo equipamiento
+
+            double totalCost = 0;
+            foreach (Step step in this.steps)
+            {
+                totalCost += step.GetStepCost();
+            }
+            return totalCost;
+        }
+
         public void PrintRecipe()
         {
             Console.WriteLine($"Receta de {this.FinalProduct.Description}:");

@@ -25,8 +25,7 @@ namespace Full_GRASP_And_SOLID
             TheRecipe.FinalProduct = GetProduct("Café con leche");
             TheRecipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             TheRecipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
-            TheRecipe.PrintRecipe();
-            GetProductionCost(TheRecipe);
+            TheRecipe.GetProductionCost();
         }
 
         private static void PopulateCatalogs()
@@ -69,20 +68,6 @@ namespace Full_GRASP_And_SOLID
         {
             var query = from Equipment equipment in equipmentCatalog where equipment.Description == description select equipment;
             return query.FirstOrDefault();
-        }
-
-        public static double GetProductionCost(Recipe recipe)
-        {
-            // Step myStep = new Step(); // Crea una instancia de Step
-            Step myStep = new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120);
-            Step myStep2 = new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60);
-            foreach (Step step in recipe.steps)
-            {
-                step.GetStepCost(recipe);
-            }
-            double TotalCost =  myStep.GetStepCost(recipe) + myStep2.GetStepCost(recipe) +
-                                myStep.GetStepTime(recipe) + myStep2.GetStepTime(recipe);
-            return TotalCost;   
         }
 
     }
